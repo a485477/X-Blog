@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>webpack配置小技巧 | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Just playing around">
+    <link rel="preload" href="/X-Blog/assets/css/0.styles.6c2272d3.css" as="style"><link rel="preload" href="/X-Blog/assets/js/app.0bfbaa4e.js" as="script"><link rel="preload" href="/X-Blog/assets/js/2.b59166c8.js" as="script"><link rel="preload" href="/X-Blog/assets/js/15.51e122f5.js" as="script"><link rel="prefetch" href="/X-Blog/assets/js/10.7e127b0c.js"><link rel="prefetch" href="/X-Blog/assets/js/11.47fd0dab.js"><link rel="prefetch" href="/X-Blog/assets/js/12.a78c0a42.js"><link rel="prefetch" href="/X-Blog/assets/js/13.8bb8a80c.js"><link rel="prefetch" href="/X-Blog/assets/js/14.ed291892.js"><link rel="prefetch" href="/X-Blog/assets/js/16.deb9f46e.js"><link rel="prefetch" href="/X-Blog/assets/js/17.63d6673a.js"><link rel="prefetch" href="/X-Blog/assets/js/18.d566475e.js"><link rel="prefetch" href="/X-Blog/assets/js/19.607e39db.js"><link rel="prefetch" href="/X-Blog/assets/js/20.80d1d4ee.js"><link rel="prefetch" href="/X-Blog/assets/js/21.1a388974.js"><link rel="prefetch" href="/X-Blog/assets/js/22.3aa8932e.js"><link rel="prefetch" href="/X-Blog/assets/js/23.aa7debfe.js"><link rel="prefetch" href="/X-Blog/assets/js/3.ab8434fc.js"><link rel="prefetch" href="/X-Blog/assets/js/4.e258bf78.js"><link rel="prefetch" href="/X-Blog/assets/js/5.3218ca1e.js"><link rel="prefetch" href="/X-Blog/assets/js/6.79cd8fe8.js"><link rel="prefetch" href="/X-Blog/assets/js/7.cb72ace3.js"><link rel="prefetch" href="/X-Blog/assets/js/8.8b36ea1a.js"><link rel="prefetch" href="/X-Blog/assets/js/9.3c935d94.js">
+    <link rel="stylesheet" href="/X-Blog/assets/css/0.styles.6c2272d3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/X-Blog/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link router-link-active">
+  前端随笔
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link router-link-active">
+  前端随笔
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>js</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/X-Blog/book/js/promise.html" class="sidebar-link">将请求合并</a></li><li><a href="/X-Blog/book/js/webpack基础篇.html" class="sidebar-link">webpack 常用的配置详解</a></li><li><a href="/X-Blog/book/js/webpack配置小技巧.html" class="active sidebar-link">webpack配置小技巧</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/X-Blog/book/js/webpack配置小技巧.html#合理利用缓存" class="sidebar-link">合理利用缓存</a></li><li class="sidebar-sub-header"><a href="/X-Blog/book/js/webpack配置小技巧.html#html-webpack-plugin-next" class="sidebar-link">html-webpack-plugin@next</a></li><li class="sidebar-sub-header"><a href="/X-Blog/book/js/webpack配置小技巧.html#copy-webpack-plugin" class="sidebar-link">copy-webpack-plugin</a></li><li class="sidebar-sub-header"><a href="/X-Blog/book/js/webpack配置小技巧.html#preload-webpack-plugin" class="sidebar-link">preload-webpack-plugin</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>css</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>使用说明</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="webpack配置小技巧"><a href="#webpack配置小技巧" class="header-anchor">#</a> webpack配置小技巧</h1> <h2 id="合理利用缓存"><a href="#合理利用缓存" class="header-anchor">#</a> 合理利用缓存</h2> <p>编译的时候应该将那些常用的第三方包与manifest文件单独打包出来，但是就算打包完成，因为出口设置了filename为hash值，每次编译因为顺序变换的原因导致hash值会改变，导致webpack的服务器不能合理的利用缓存来获取那些不会更改的资源。</p> <p>这种情况下，可以使用 <code>NamedModulesPlugin</code>这个包将用模块路径替换标识符，还一种方法就是使用<code>HashedModuleIdsPlugin</code>, 该插件会根据模块的相对路径生成一个四位数的hash作为模块id.</p> <h2 id="html-webpack-plugin-next"><a href="#html-webpack-plugin-next" class="header-anchor">#</a> html-webpack-plugin@next</h2> <p><code>title</code>:</p> <p>用于生成的HTML文档的标题</p> <p><code>template</code>:</p> <p>webpack模板的相对或绝对路径。默认情况下，它将使用（src/index.ejs如果存在）。</p> <p><code>templateParameters</code>:</p> <p>允许覆盖模板中使用的参数, 其实就是ejs模板语法，传入变量，ejs里面使用。</p> <h2 id="copy-webpack-plugin"><a href="#copy-webpack-plugin" class="header-anchor">#</a> copy-webpack-plugin</h2> <p><code>from</code>:</p> <p>原地址目录</p> <p><code>to</code>:</p> <p>目标目录</p> <h2 id="preload-webpack-plugin"><a href="#preload-webpack-plugin" class="header-anchor">#</a> preload-webpack-plugin</h2> <p>和html-webpack-plugin配合使用，用于将打包出来的js与css, 预加载或者懒加载</p> <p><code>rel</code>:</p> <p>设定链接方式，preload预加载，prefetch懒加载</p> <p><code>include</code>:</p> <p>指定作用于什么类型的模块，allChunks, 所有类型的模块，initial, 初始模块，</p> <div class="language-js extra-class"><pre class="language-js"><code>plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+  <span class="token keyword">new</span> <span class="token class-name">HtmlWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token keyword">new</span> <span class="token class-name">PreloadWebpackPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    rel<span class="token operator">:</span> <span class="token string">'preload'</span><span class="token punctuation">,</span>
+    include<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'home'</span><span class="token punctuation">]</span> <span class="token comment">//指定chunk的名字</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p><code>fileBlacklist</code>:</p> <p>过滤块， 传入数组</p> <p><code>fileWhitelist</code>:</p> <p>只作用某些块</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/X-Blog/book/js/webpack基础篇.html" class="prev">
+        webpack 常用的配置详解
+      </a></span> <span class="next"><a href="/X-Blog/book/css/css基础篇.html">
+        选择器篇
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/X-Blog/assets/js/app.0bfbaa4e.js" defer></script><script src="/X-Blog/assets/js/2.b59166c8.js" defer></script><script src="/X-Blog/assets/js/15.51e122f5.js" defer></script>
+  </body>
+</html>

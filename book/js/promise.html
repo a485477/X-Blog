@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>将请求合并 | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Just playing around">
+    <link rel="preload" href="/X-Blog/assets/css/0.styles.6c2272d3.css" as="style"><link rel="preload" href="/X-Blog/assets/js/app.0bfbaa4e.js" as="script"><link rel="preload" href="/X-Blog/assets/js/2.b59166c8.js" as="script"><link rel="preload" href="/X-Blog/assets/js/13.8bb8a80c.js" as="script"><link rel="prefetch" href="/X-Blog/assets/js/10.7e127b0c.js"><link rel="prefetch" href="/X-Blog/assets/js/11.47fd0dab.js"><link rel="prefetch" href="/X-Blog/assets/js/12.a78c0a42.js"><link rel="prefetch" href="/X-Blog/assets/js/14.ed291892.js"><link rel="prefetch" href="/X-Blog/assets/js/15.51e122f5.js"><link rel="prefetch" href="/X-Blog/assets/js/16.deb9f46e.js"><link rel="prefetch" href="/X-Blog/assets/js/17.63d6673a.js"><link rel="prefetch" href="/X-Blog/assets/js/18.d566475e.js"><link rel="prefetch" href="/X-Blog/assets/js/19.607e39db.js"><link rel="prefetch" href="/X-Blog/assets/js/20.80d1d4ee.js"><link rel="prefetch" href="/X-Blog/assets/js/21.1a388974.js"><link rel="prefetch" href="/X-Blog/assets/js/22.3aa8932e.js"><link rel="prefetch" href="/X-Blog/assets/js/23.aa7debfe.js"><link rel="prefetch" href="/X-Blog/assets/js/3.ab8434fc.js"><link rel="prefetch" href="/X-Blog/assets/js/4.e258bf78.js"><link rel="prefetch" href="/X-Blog/assets/js/5.3218ca1e.js"><link rel="prefetch" href="/X-Blog/assets/js/6.79cd8fe8.js"><link rel="prefetch" href="/X-Blog/assets/js/7.cb72ace3.js"><link rel="prefetch" href="/X-Blog/assets/js/8.8b36ea1a.js"><link rel="prefetch" href="/X-Blog/assets/js/9.3c935d94.js">
+    <link rel="stylesheet" href="/X-Blog/assets/css/0.styles.6c2272d3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/X-Blog/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link router-link-active">
+  前端随笔
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link router-link-active">
+  前端随笔
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>js</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/X-Blog/book/js/promise.html" class="active sidebar-link">将请求合并</a></li><li><a href="/X-Blog/book/js/webpack基础篇.html" class="sidebar-link">webpack 常用的配置详解</a></li><li><a href="/X-Blog/book/js/webpack配置小技巧.html" class="sidebar-link">webpack配置小技巧</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>css</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>使用说明</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="将请求合并"><a href="#将请求合并" class="header-anchor">#</a> 将请求合并</h1> <p>如果两个请求在短时间内重复请求，则合并这个请求</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">fetchs</span> <span class="token punctuation">(</span><span class="token parameter">ids</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+				<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+					<span class="token keyword">return</span> ids<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">id</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>id<span class="token punctuation">,</span> name<span class="token operator">:</span> <span class="token string">'xxx'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+				<span class="token punctuation">}</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">function</span> <span class="token function">schedule</span> <span class="token punctuation">(</span><span class="token parameter">fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">let</span> resolves <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> timeout <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">,</span> params <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+			<span class="token keyword">function</span> <span class="token function">clean</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span>
+				timeout <span class="token operator">=</span> <span class="token keyword">null</span>
+			<span class="token punctuation">}</span>
+
+			<span class="token keyword">function</span> <span class="token function">initClean</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token function">clean</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+				params <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+				resolves <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+				state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+			<span class="token punctuation">}</span>
+
+			<span class="token keyword">function</span> <span class="token function">later</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				timeout <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+					<span class="token function">fn</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span>
+						<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+							state<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">d<span class="token punctuation">,</span> idx</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+								resolves<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">)</span>
+							<span class="token punctuation">}</span><span class="token punctuation">)</span>
+						<span class="token punctuation">}</span><span class="token punctuation">)</span>
+						<span class="token punctuation">.</span><span class="token function">finally</span><span class="token punctuation">(</span>initClean<span class="token punctuation">)</span>
+				<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+			<span class="token punctuation">}</span>
+
+			<span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">ids</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+					<span class="token keyword">let</span> nowTime <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+					resolves<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>resolve<span class="token punctuation">)</span>
+					state<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">...</span>ids<span class="token punctuation">)</span>
+					
+					<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>timeout<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+						params <span class="token operator">=</span> params<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>ids<span class="token punctuation">)</span>
+						
+						<span class="token function">later</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+					<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+						params <span class="token operator">=</span> params<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>ids<span class="token punctuation">)</span>
+						<span class="token function">clean</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+						<span class="token function">later</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+					<span class="token punctuation">}</span>
+				<span class="token punctuation">}</span><span class="token punctuation">)</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+
+		<span class="token keyword">let</span> debounce <span class="token operator">=</span> <span class="token function">schedule</span><span class="token punctuation">(</span>fetchs<span class="token punctuation">)</span>
+		<span class="token function">debounce</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+				console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span>
+		<span class="token function">debounce</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+				console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+		<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+			<span class="token function">debounce</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+				console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/X-Blog/book/js/webpack基础篇.html">
+        webpack 常用的配置详解
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/X-Blog/assets/js/app.0bfbaa4e.js" defer></script><script src="/X-Blog/assets/js/2.b59166c8.js" defer></script><script src="/X-Blog/assets/js/13.8bb8a80c.js" defer></script>
+  </body>
+</html>

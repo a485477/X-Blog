@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>121. 买卖股票的最佳时机 | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Just playing around">
+    <link rel="preload" href="/X-Blog/assets/css/0.styles.6c2272d3.css" as="style"><link rel="preload" href="/X-Blog/assets/js/app.0bfbaa4e.js" as="script"><link rel="preload" href="/X-Blog/assets/js/2.b59166c8.js" as="script"><link rel="preload" href="/X-Blog/assets/js/22.3aa8932e.js" as="script"><link rel="prefetch" href="/X-Blog/assets/js/10.7e127b0c.js"><link rel="prefetch" href="/X-Blog/assets/js/11.47fd0dab.js"><link rel="prefetch" href="/X-Blog/assets/js/12.a78c0a42.js"><link rel="prefetch" href="/X-Blog/assets/js/13.8bb8a80c.js"><link rel="prefetch" href="/X-Blog/assets/js/14.ed291892.js"><link rel="prefetch" href="/X-Blog/assets/js/15.51e122f5.js"><link rel="prefetch" href="/X-Blog/assets/js/16.deb9f46e.js"><link rel="prefetch" href="/X-Blog/assets/js/17.63d6673a.js"><link rel="prefetch" href="/X-Blog/assets/js/18.d566475e.js"><link rel="prefetch" href="/X-Blog/assets/js/19.607e39db.js"><link rel="prefetch" href="/X-Blog/assets/js/20.80d1d4ee.js"><link rel="prefetch" href="/X-Blog/assets/js/21.1a388974.js"><link rel="prefetch" href="/X-Blog/assets/js/23.aa7debfe.js"><link rel="prefetch" href="/X-Blog/assets/js/3.ab8434fc.js"><link rel="prefetch" href="/X-Blog/assets/js/4.e258bf78.js"><link rel="prefetch" href="/X-Blog/assets/js/5.3218ca1e.js"><link rel="prefetch" href="/X-Blog/assets/js/6.79cd8fe8.js"><link rel="prefetch" href="/X-Blog/assets/js/7.cb72ace3.js"><link rel="prefetch" href="/X-Blog/assets/js/8.8b36ea1a.js"><link rel="prefetch" href="/X-Blog/assets/js/9.3c935d94.js">
+    <link rel="stylesheet" href="/X-Blog/assets/css/0.styles.6c2272d3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/X-Blog/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link router-link-active">
+  前端随笔
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link router-link-active">
+  前端随笔
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>js</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/X-Blog/book/js/promise.html" class="sidebar-link">将请求合并</a></li><li><a href="/X-Blog/book/js/webpack基础篇.html" class="sidebar-link">webpack 常用的配置详解</a></li><li><a href="/X-Blog/book/js/webpack配置小技巧.html" class="sidebar-link">webpack配置小技巧</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>css</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>算法</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/X-Blog/book/算法/删除排序数组中的重复项.html" class="sidebar-link">26. 删除排序数组中的重复项</a></li><li><a href="/X-Blog/book/算法/数组中出现次数最多的值.html" class="sidebar-link">169. 多数元素</a></li><li><a href="/X-Blog/book/算法/数组合并双指针.html" class="sidebar-link">88. 合并两个有序数组</a></li><li><a href="/X-Blog/book/算法/最大子序和.html" class="sidebar-link">53. 最大子序和</a></li><li><a href="/X-Blog/book/算法/有效的括号.html" class="sidebar-link">20. 有效的括号</a></li><li><a href="/X-Blog/book/算法/股票利润最大计算.html" class="active sidebar-link">121. 买卖股票的最佳时机</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>使用说明</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_121-买卖股票的最佳时机"><a href="#_121-买卖股票的最佳时机" class="header-anchor">#</a> 121. 买卖股票的最佳时机</h1> <p>给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。</p> <p>如果你最多只允许完成一笔交易（即买入和卖出一支股票一次），设计一个算法来计算你所能获取的最大利润。</p> <p>注意：你不能在买入股票前卖出股票。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/** 
+ * 解题思路：
+ * 动态规划算法，申明两个变量，一个存储最小值，一个存储最大差值
+ * 保存最优结果返回即可
+*/</span>
+<span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span>
+<span class="token keyword">var</span> <span class="token function-variable function">maxProfit</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">prices</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> len <span class="token operator">=</span> prices<span class="token punctuation">.</span>length<span class="token punctuation">,</span> min <span class="token operator">=</span> prices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> result <span class="token operator">=</span> <span class="token number">0</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> prices<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            min <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>min<span class="token punctuation">,</span> prices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            result <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>prices<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> min<span class="token punctuation">,</span> result<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">maxProfit</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/X-Blog/book/算法/有效的括号.html" class="prev">
+        20. 有效的括号
+      </a></span> <span class="next"><a href="/X-Blog/book/使用说明/npm.html">
+        npm 的一些使用说明
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/X-Blog/assets/js/app.0bfbaa4e.js" defer></script><script src="/X-Blog/assets/js/2.b59166c8.js" defer></script><script src="/X-Blog/assets/js/22.3aa8932e.js" defer></script>
+  </body>
+</html>

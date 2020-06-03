@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>tapable 源码解析 | Hello VuePress</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    
+    <meta name="description" content="Just playing around">
+    <link rel="preload" href="/X-Blog/assets/css/0.styles.6c2272d3.css" as="style"><link rel="preload" href="/X-Blog/assets/js/app.0bfbaa4e.js" as="script"><link rel="preload" href="/X-Blog/assets/js/2.b59166c8.js" as="script"><link rel="preload" href="/X-Blog/assets/js/6.79cd8fe8.js" as="script"><link rel="prefetch" href="/X-Blog/assets/js/10.7e127b0c.js"><link rel="prefetch" href="/X-Blog/assets/js/11.47fd0dab.js"><link rel="prefetch" href="/X-Blog/assets/js/12.a78c0a42.js"><link rel="prefetch" href="/X-Blog/assets/js/13.8bb8a80c.js"><link rel="prefetch" href="/X-Blog/assets/js/14.ed291892.js"><link rel="prefetch" href="/X-Blog/assets/js/15.51e122f5.js"><link rel="prefetch" href="/X-Blog/assets/js/16.deb9f46e.js"><link rel="prefetch" href="/X-Blog/assets/js/17.63d6673a.js"><link rel="prefetch" href="/X-Blog/assets/js/18.d566475e.js"><link rel="prefetch" href="/X-Blog/assets/js/19.607e39db.js"><link rel="prefetch" href="/X-Blog/assets/js/20.80d1d4ee.js"><link rel="prefetch" href="/X-Blog/assets/js/21.1a388974.js"><link rel="prefetch" href="/X-Blog/assets/js/22.3aa8932e.js"><link rel="prefetch" href="/X-Blog/assets/js/23.aa7debfe.js"><link rel="prefetch" href="/X-Blog/assets/js/3.ab8434fc.js"><link rel="prefetch" href="/X-Blog/assets/js/4.e258bf78.js"><link rel="prefetch" href="/X-Blog/assets/js/5.3218ca1e.js"><link rel="prefetch" href="/X-Blog/assets/js/7.cb72ace3.js"><link rel="prefetch" href="/X-Blog/assets/js/8.8b36ea1a.js"><link rel="prefetch" href="/X-Blog/assets/js/9.3c935d94.js">
+    <link rel="stylesheet" href="/X-Blog/assets/css/0.styles.6c2272d3.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/X-Blog/" class="home-link router-link-active"><!----> <span class="site-name">Hello VuePress</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link router-link-active">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link">
+  前端随笔
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/X-Blog/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/X-Blog/blogs/" class="nav-link router-link-active">
+  博客
+</a></div><div class="nav-item"><a href="/X-Blog/book/" class="nav-link">
+  前端随笔
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/X-Blog/blogs/前端处理文件下载篇.html" class="sidebar-link">前端处理文件下载时重命名解决方案</a></li><li><a href="/X-Blog/blogs/浏览器渲染性能优化篇.html" class="sidebar-link">浏览器渲染性能优化篇</a></li><li><a href="/X-Blog/blogs/tapable源码解析一.html" class="active sidebar-link">tapable 源码解析</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#基础概念" class="sidebar-link">基础概念</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#疑问" class="sidebar-link">疑问</a></li><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#从-synchook-开始" class="sidebar-link">从 SyncHook 开始</a></li><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#insert" class="sidebar-link">_insert</a></li><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#了解怎么触发的" class="sidebar-link">了解怎么触发的</a></li><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#hookcodefactory" class="sidebar-link">HookCodeFactory</a></li><li class="sidebar-sub-header"><a href="/X-Blog/blogs/tapable源码解析一.html#总结" class="sidebar-link">总结</a></li></ul></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="tapable-源码解析"><a href="#tapable-源码解析" class="header-anchor">#</a> tapable 源码解析</h1> <h2 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h2> <p>研究 tapable 是基于工作中需要编写 webpack 的 plugin 和 loader，所以有必要了解一下 webpack 的运行机制，而 tapable 是 webpack 依赖的核心代码，它本身是一个类似于 node 的 eventEmitter 的发布订阅类，但是又是基于 webpack 事件流的特性魔改的版本，本篇文章就是研究 tapable 做的一篇笔记。</p> <h2 id="基础概念"><a href="#基础概念" class="header-anchor">#</a> 基础概念</h2> <p>看源码我喜欢先把整体逻辑梳理一遍，然后再根据梳理过程中的疑问去深入细节，比如先结合网上已有的一些解析文章与官方文档，大概了解整体架构，下面是 tapable 暴露的 Api 大纲图。</p> <center>大纲图</center> <p><img src="/X-Blog/assets/img/11.9b9c4cb6.png" alt="功能图"></p> <p>tapable 的 api 分为 async(异步)与 sync(同步)，其中异步方法又分为串行和并行，同步方法都是串行执行。</p> <h3 id="疑问"><a href="#疑问" class="header-anchor">#</a> 疑问</h3> <p>一个普通的 SyncHook 钩子调用方法如下：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 整体使用的感觉就是一个发布订阅类，但是好像有很多地方和我想得不一样</span>
+<span class="token keyword">let</span> <span class="token punctuation">{</span> SyncHook <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;tapable&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 这个options?参数是干嘛用的？和普通的参数概念好像不太一样？</span>
+<span class="token comment">// 官方文档说是定义参数用的，但解释不是很详细.</span>
+<span class="token keyword">let</span> pluginCompat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SyncHook</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&quot;options&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// tap的第一个参数又是干嘛的，好像也没什么意义？</span>
+pluginCompat<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">&quot;my&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// my, undefined (为什么b是undefined)</span>
+  <span class="token keyword">return</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+pluginCompat<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">&quot;my3&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// my, undefined</span>
+  <span class="token keyword">return</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// call的第一个参数和我以为的方法名好像不太一样</span>
+<span class="token function">pluginCompat</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">&quot;my&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;a&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="从-synchook-开始"><a href="#从-synchook-开始" class="header-anchor">#</a> 从 SyncHook 开始</h3> <p>带着疑问先看看 SyncHook 源码：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// SyncHook源码</span>
+<span class="token comment">// 核心类</span>
+<span class="token keyword">const</span> Hook <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./Hook&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 生成code的核心工厂类</span>
+<span class="token keyword">const</span> HookCodeFactory <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./HookCodeFactory&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SyncHookCodeFactory</span> <span class="token keyword">extends</span> <span class="token class-name">HookCodeFactory</span> <span class="token punctuation">{</span>
+  <span class="token function">content</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> onError<span class="token punctuation">,</span> onDone<span class="token punctuation">,</span> rethrowIfPossible <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">callTapsSeries</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token function-variable function">onError</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">i<span class="token punctuation">,</span> err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">onError</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      onDone<span class="token punctuation">,</span>
+      rethrowIfPossible<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> factory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SyncHookCodeFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 继承Hook类</span>
+<span class="token keyword">class</span> <span class="token class-name">SyncHook</span> <span class="token keyword">extends</span> <span class="token class-name">Hook</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 禁止使用tapAsync函数</span>
+  <span class="token function">tapAsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;tapAsync is not supported on a SyncHook&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 禁止使用tapPromise函数</span>
+  <span class="token function">tapPromise</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;tapPromise is not supported on a SyncHook&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 重写compile</span>
+  <span class="token function">compile</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    factory<span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> factory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 最终暴露的API</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> SyncHook<span class="token punctuation">;</span>
+</code></pre></div><p>可以看出，SyncHook 是通过继承 Hook 的子类，关键代码都在 Hook 类里面，子类里面又根据不同的应用场景重写了 compile 方法,compile 方法会注册相关的工厂类。</p> <p>那我们再来看看 Hook 类的基本构造：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 从使用角度尝试解析源码，使用如下</span>
+<span class="token keyword">let</span> <span class="token punctuation">{</span> SyncHook <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;tapable&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> pluginCompat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SyncHook</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&quot;options&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 注册回调</span>
+pluginCompat<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">&quot;my&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 触发</span>
+<span class="token function">pluginCompat</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'666'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">&quot;a&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Hook关于tap的源码</span>
+<span class="token comment">// options是传入的my,fn是传入的回调函数</span>
+<span class="token function">tap</span><span class="token punctuation">(</span><span class="token parameter">options<span class="token punctuation">,</span> fn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> options <span class="token operator">===</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">)</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> options
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> options <span class="token operator">!==</span> <span class="token string">&quot;object&quot;</span> <span class="token operator">||</span> options <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>
+      <span class="token string">&quot;Invalid arguments to tap(options: Object, fn: function)&quot;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  options <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">&quot;sync&quot;</span><span class="token punctuation">,</span>
+    fn<span class="token operator">:</span> fn
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> options<span class="token punctuation">.</span>name <span class="token operator">!==</span> <span class="token string">&quot;string&quot;</span> <span class="token operator">||</span> options<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">&quot;Missing name for tap&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 到这里为止都是处理参数的边界情况与最终的合并，保证各种格式的参数能统一</span>
+
+  <span class="token comment">// _runRegisterInterceptors是处理拦截器的逻辑，tapable的拦截器也比较复杂，有四种插入机制，这里处理的是registry，registry会将每一个tap传入的参数对象options再做一次修改，并返回，注意registry必须返回一个options对象，否则不会生效。</span>
+  options <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_runRegisterInterceptors</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// _insert是最后插入机制，会根据参数插入到tap队列里，后面会详细解析</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_insert</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>首先基本上源码第一步都是规范化传入的参数，options 可以是字符串也可以是对象，如果是字符串默认为 name 的值，这里 name 的用意是否纯粹为注释还有待考证，继续看, 然后是执行拦截器的 regsitry 函数，传入 options 参数做再处理并返回新对象，最后插入到任务队列里。</p> <h3 id="insert"><a href="#insert" class="header-anchor">#</a> _insert</h3> <p>_insert 源码如下：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">_insert</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_resetCompilation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 将参数的before属性取出并去重，从源码来看只接受字符串和字符串数组</span>
+  <span class="token keyword">let</span> before<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> item<span class="token punctuation">.</span>before <span class="token operator">===</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">)</span> before <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span>item<span class="token punctuation">.</span>before<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>before<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    before <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>before<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 取出stage的值，stage是指定插入的顺序，比如stage为1的回调会在stage为2的前面调用</span>
+  <span class="token keyword">let</span> stage <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> item<span class="token punctuation">.</span>stage <span class="token operator">===</span> <span class="token string">&quot;number&quot;</span><span class="token punctuation">)</span> stage <span class="token operator">=</span> item<span class="token punctuation">.</span>stage<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>taps<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token comment">// 从后往前遍历taps数组</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    i<span class="token operator">--</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> x <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>taps<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将当前遍历的item后置一位</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>taps<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> xStage <span class="token operator">=</span> x<span class="token punctuation">.</span>stage <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// before和stage的作用类似，也是用于指定回调执行的顺序，不一样的是before保障的是回调在指定name的回调之前执行</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>before<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// before如果包含当前的name就删除包含的name,并跳到下一轮循环</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>before<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        before<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">continue</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// before如果还有元素就跳值下一轮循环</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>before<span class="token punctuation">.</span>size <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">continue</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 当前队列的stage如果大于item的stage就往前移动一位</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>xStage <span class="token operator">&gt;</span> stage<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">continue</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 如果通过了所有条件，则将i加一位，表示item应该插入到i++的空位置上</span>
+    i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 插入对象</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>taps<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>总结起来_insert 函数就是为传入的回调调整执行顺序，相关的参数有两个 stage 和 before,stage 的类型是数值类型，通过比对大小决定调用顺序，数值小的在前面调用，before 是字符串数组类型，值为传入参数的 name，表示回调必须排在传入的 name 之前执行，before 的优先级是比 stage 要高的。</p> <p>得到结论 tap 插入回调的时候，第一个参数不仅仅是起到注释的作用，如果其他 tap 有传入 before 的话，可以精确控制将回调指定在某个回调之前调用.</p> <p>举个例子：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 以下的打印顺序会是2,1</span>
+<span class="token comment">// 如果去掉before，才是1,2</span>
+<span class="token comment">// 因为before的优先级更高</span>
+pluginCompat<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;my&quot;</span><span class="token punctuation">,</span>
+    stage<span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+pluginCompat<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;my3&quot;</span><span class="token punctuation">,</span>
+    stage<span class="token operator">:</span> <span class="token number">11</span><span class="token punctuation">,</span>
+    before<span class="token operator">:</span> <span class="token string">&quot;my&quot;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="了解怎么触发的"><a href="#了解怎么触发的" class="header-anchor">#</a> 了解怎么触发的</h3> <p>上面解析了 SyncHook 是怎么插入回调的，还需要了解是怎么触发回调的：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 以下为Hook定义call的流程，这么设计是由于call是动态生成的代码</span>
+<span class="token comment">// 在_insert的第一行就会执行this._resetCompilation();</span>
+<span class="token comment">// 其中会执行this.call = this._call, 也就是lazyCompileHook</span>
+<span class="token comment">// 然后调用的时候又会在lazyCompileHook里面重置掉call函数</span>
+<span class="token comment">// 所以其实每一次的call都会执行_createCall动态生成代码code</span>
+<span class="token keyword">function</span> <span class="token function">createCompileDelegate</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token function">lazyCompileHook</span><span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_createCall</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperties</span><span class="token punctuation">(</span><span class="token class-name">Hook</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  _call<span class="token operator">:</span> <span class="token punctuation">{</span>
+    value<span class="token operator">:</span> <span class="token function">createCompileDelegate</span><span class="token punctuation">(</span><span class="token string">&quot;call&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;sync&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    configurable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    writable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  _promise<span class="token operator">:</span> <span class="token punctuation">{</span>
+    value<span class="token operator">:</span> <span class="token function">createCompileDelegate</span><span class="token punctuation">(</span><span class="token string">&quot;promise&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;promise&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    configurable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    writable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  _callAsync<span class="token operator">:</span> <span class="token punctuation">{</span>
+    value<span class="token operator">:</span> <span class="token function">createCompileDelegate</span><span class="token punctuation">(</span><span class="token string">&quot;callAsync&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;async&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    configurable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    writable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>找到_createCall</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// _createCall比较简单就是调用一下this.compile编译函数，传入相应的参数</span>
+<span class="token comment">// 而compile函数是由子类提供重写的</span>
+<span class="token function">_createCall</span><span class="token punctuation">(</span><span class="token parameter">type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    taps<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>taps<span class="token punctuation">,</span>
+    interceptors<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>interceptors<span class="token punctuation">,</span>
+    args<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_args<span class="token punctuation">,</span>
+    type<span class="token operator">:</span> type
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在 SyncHook.js 找到 compile</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 重写compile</span>
+<span class="token function">compile</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  factory<span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> factory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>compile 就是调用了一下工厂函数的 setup 和 create,具体逻辑还得看工厂函数的源码</p> <h3 id="hookcodefactory"><a href="#hookcodefactory" class="header-anchor">#</a> HookCodeFactory</h3> <p>找到 HookCodeFactory.js 工厂函数</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 先看setup函数</span>
+<span class="token comment">// 也很简单，就是在Hook实例this上赋值_x为taps的回调数组</span>
+<span class="token function">setup</span><span class="token punctuation">(</span><span class="token parameter">instance<span class="token punctuation">,</span> options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	instance<span class="token punctuation">.</span>_x <span class="token operator">=</span> options<span class="token punctuation">.</span>taps<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">t</span> <span class="token operator">=&gt;</span> t<span class="token punctuation">.</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// create就是动态创建代码code的函数</span>
+<span class="token function">create</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// init主要为工厂实例临时赋值实例属性</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> fn<span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">//同步的基本走这块逻辑</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;sync&quot;</span><span class="token operator">:</span>
+      fn <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Function</span><span class="token punctuation">(</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">'&quot;use strict&quot;;\n'</span> <span class="token operator">+</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">content</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          <span class="token function-variable function">onError</span><span class="token operator">:</span> <span class="token parameter">err</span> <span class="token operator">=&gt;</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">throw </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+          <span class="token function-variable function">onResult</span><span class="token operator">:</span> <span class="token parameter">result</span> <span class="token operator">=&gt;</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">return </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>result<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+          resultReturns<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token function-variable function">onDone</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+          rethrowIfPossible<span class="token operator">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token comment">// 省略。。。</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 将init赋值的实例属性重置为undefined</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">deinit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 返回最终生成的调用函数</span>
+  <span class="token keyword">return</span> fn<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在 switch 的判断里，肯定是走 sync 的逻辑块，是用字符串函数体创建，通过拼接字符串生成可执行的 call 函数，也就是我们使用的时候真正调用的函数。</p> <blockquote><p>字符串函数体只有最后一个参数是函数实体，前面的参数代表形参，被函数使用的参数的名称必须是合法命名的。参数名称是一个有效的 JavaScript 标识符的字符串，或者一个用逗号分隔的有效字符串的列表;例如“×”，“theValue”，或“a,b”。</p></blockquote> <p>而拼接字符串依靠的是 args、header、content 三个函数，一个一个来看。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 使用示例</span>
+<span class="token keyword">let</span> pluginCompat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SyncHook</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">&quot;options&quot;</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// this.args()</span>
+<span class="token comment">// 作用是根据参数与Hook实例传入的args生成的形参, 在我们的这个示例里就是['options']</span>
+<span class="token comment">// 最终返回的就是'options'</span>
+<span class="token function">args</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>
+  before<span class="token punctuation">,</span>
+  after
+<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> allArgs <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_args<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>before<span class="token punctuation">)</span> allArgs <span class="token operator">=</span> <span class="token punctuation">[</span>before<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>allArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>after<span class="token punctuation">)</span> allArgs <span class="token operator">=</span> allArgs<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>after<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>allArgs<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> allArgs<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">&quot;, &quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>到这一步就能理解 SyncHook 传入参数的作用，一部分是希望规范传入参数的注释意义，更多的是 call 函数是通过字符串函数体创建，会根据预先定义好的形参来决定可传入的参数个数，所以示例里，第二个参数才会是 undefined.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">header</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> code <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+  <span class="token comment">// 判断是否需要上下文，这里的上下文是用于给所有任务使用的一个对象，只要有一个taps传入context为true，_context就取{}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">needContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    code <span class="token operator">+=</span> <span class="token string">&quot;var _context = {};\n&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    code <span class="token operator">+=</span> <span class="token string">&quot;var _context;\n&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// this是Hook实例，this._x在setup里赋值，值为options.taps.map(t =&gt; t.fn),fn的数组</span>
+  code <span class="token operator">+=</span> <span class="token string">&quot;var _x = this._x;\n&quot;</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    code <span class="token operator">+=</span> <span class="token string">&quot;var _taps = this.taps;\n&quot;</span><span class="token punctuation">;</span>
+    code <span class="token operator">+=</span> <span class="token string">&quot;var _interceptors = this.interceptors;\n&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 这里会遍历拦截器，取出call函数，如果有的话，执行它，call的作用是拦截参数与拦截器可能存在的上下文</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> interceptor <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>interceptors<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>interceptor<span class="token punctuation">.</span>call<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getInterceptor</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.call(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        before<span class="token operator">:</span> interceptor<span class="token punctuation">.</span>context <span class="token operator">?</span> <span class="token string">&quot;_context&quot;</span> <span class="token operator">:</span> <span class="token keyword">undefined</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">);\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> code<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// this.content返回的code是主要函数体，这个函数是在SyncHook.js里定义，通过继承工厂类重写的子类，</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">content</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function-variable function">onError</span><span class="token operator">:</span> <span class="token parameter">err</span> <span class="token operator">=&gt;</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">throw </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onResult</span><span class="token operator">:</span> <span class="token parameter">result</span> <span class="token operator">=&gt;</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">return </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>result<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+  resultReturns<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onDone</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  rethrowIfPossible<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 子类里的实现</span>
+<span class="token comment">// 其实还是调用工厂类的callTapsSeries编译函数，通过传参定制内容</span>
+<span class="token function">content</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> onError<span class="token punctuation">,</span> onDone<span class="token punctuation">,</span> rethrowIfPossible <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">callTapsSeries</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token function-variable function">onError</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">i<span class="token punctuation">,</span> err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">onError</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    onDone<span class="token punctuation">,</span>
+    rethrowIfPossible
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 工厂类的callTapsSeries函数</span>
+<span class="token function">callTapsSeries</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>
+  onError<span class="token punctuation">,</span>
+  onResult<span class="token punctuation">,</span>
+  resultReturns<span class="token punctuation">,</span>
+  onDone<span class="token punctuation">,</span>
+  doneReturns<span class="token punctuation">,</span>
+  rethrowIfPossible
+<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 假如没有taps，直接返回''</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>taps<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">onDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> firstAsync <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>taps<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token parameter">t</span> <span class="token operator">=&gt;</span> t<span class="token punctuation">.</span>type <span class="token operator">!==</span> <span class="token string">&quot;sync&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// somethingReturns观察一下应该是false</span>
+  <span class="token keyword">const</span> somethingReturns <span class="token operator">=</span> resultReturns <span class="token operator">||</span> doneReturns <span class="token operator">||</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> code <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> current <span class="token operator">=</span> onDone<span class="token punctuation">;</span>
+  <span class="token comment">// 遍历taps</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>taps<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> i <span class="token operator">=</span> j<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> unroll <span class="token operator">=</span> current <span class="token operator">!==</span> onDone <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>taps<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>type <span class="token operator">!==</span> <span class="token string">&quot;sync&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>unroll<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">function _next</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">() {\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      code <span class="token operator">+=</span> <span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">}\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      <span class="token function-variable function">current</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>somethingReturns <span class="token operator">?</span> <span class="token string">&quot;return &quot;</span> <span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">_next</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>i<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">();\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">const</span> done <span class="token operator">=</span> current<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">doneBreak</span> <span class="token operator">=</span> <span class="token parameter">skipDone</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>skipDone<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token function">onDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// 在此之上的逻辑本例子没什么用，主要看callTap</span>
+    <span class="token keyword">const</span> content <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">callTap</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token function-variable function">onError</span><span class="token operator">:</span> <span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token function">onError</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> error<span class="token punctuation">,</span> done<span class="token punctuation">,</span> doneBreak<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      onResult<span class="token operator">:</span> onResult <span class="token operator">&amp;&amp;</span>
+        <span class="token punctuation">(</span><span class="token parameter">result</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token function">onResult</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> result<span class="token punctuation">,</span> done<span class="token punctuation">,</span> doneBreak<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      onDone<span class="token operator">:</span> <span class="token operator">!</span>onResult <span class="token operator">&amp;&amp;</span> done<span class="token punctuation">,</span>
+      rethrowIfPossible<span class="token operator">:</span> rethrowIfPossible <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>firstAsync <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> i <span class="token operator">&lt;</span> firstAsync<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function-variable function">current</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> content<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  code <span class="token operator">+=</span> <span class="token function">current</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> code<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// callTap</span>
+<span class="token function">callTap</span><span class="token punctuation">(</span><span class="token parameter">tapIndex<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  onError<span class="token punctuation">,</span>
+  onResult<span class="token punctuation">,</span>
+  onDone<span class="token punctuation">,</span>
+  rethrowIfPossible
+<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> code <span class="token operator">=</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> hasTapCached <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token comment">// 遍历拦截器，取出tap</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> interceptor <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>interceptors<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>interceptor<span class="token punctuation">.</span>tap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 缓存逻辑，每轮callTap只会执行一次</span>
+      <span class="token comment">// 生成_tap0 = this._taps[0]</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>hasTapCached<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">var _tap</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getTap</span><span class="token punctuation">(</span>tapIndex<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+        hasTapCached <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 拦截器的tap主要是用于劫持上下文与taps的参数</span>
+      code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getInterceptor</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.tap(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>
+        interceptor<span class="token punctuation">.</span>context <span class="token operator">?</span> <span class="token string">&quot;_context, &quot;</span> <span class="token operator">:</span> <span class="token string">&quot;&quot;</span>
+      <span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">_tap</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">);\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// _fn0 = this._x[0]</span>
+  code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">var _fn</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> = </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getTapFn</span><span class="token punctuation">(</span>tapIndex<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token comment">// 这里的this是工厂类，</span>
+  <span class="token comment">// options的值为</span>
+  <span class="token comment">// {</span>
+  <span class="token comment">// 	taps: this.taps,</span>
+  <span class="token comment">// 	interceptors: this.interceptors,</span>
+  <span class="token comment">// 	args: this._args,</span>
+  <span class="token comment">// 	type: type</span>
+  <span class="token comment">// }</span>
+  <span class="token keyword">const</span> tap <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">.</span>taps<span class="token punctuation">[</span>tapIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>tap<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;sync&quot;</span><span class="token operator">:</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rethrowIfPossible<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">var _hasError</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> = false;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+        code <span class="token operator">+=</span> <span class="token string">&quot;try {\n&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 本例子是没有onResult的</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>onResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">var _result</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> = _fn</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          before<span class="token operator">:</span> tap<span class="token punctuation">.</span>context <span class="token operator">?</span> <span class="token string">&quot;_context&quot;</span> <span class="token operator">:</span> <span class="token keyword">undefined</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">);\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 最终走的是这里的逻辑</span>
+        <span class="token comment">// 生成_fn0(options) ...</span>
+        code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">_fn</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">args</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          before<span class="token operator">:</span> tap<span class="token punctuation">.</span>context <span class="token operator">?</span> <span class="token string">&quot;_context&quot;</span> <span class="token operator">:</span> <span class="token keyword">undefined</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">);\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rethrowIfPossible<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        code <span class="token operator">+=</span> <span class="token string">&quot;} catch(_err) {\n&quot;</span><span class="token punctuation">;</span>
+        code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">_hasError</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> = true;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+        code <span class="token operator">+=</span> <span class="token function">onError</span><span class="token punctuation">(</span><span class="token string">&quot;_err&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        code <span class="token operator">+=</span> <span class="token string">&quot;}\n&quot;</span><span class="token punctuation">;</span>
+        code <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">if(!_hasError</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">) {\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>onResult<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        code <span class="token operator">+=</span> <span class="token function">onResult</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">_result</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>tapIndex<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>onDone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        code <span class="token operator">+=</span> <span class="token function">onDone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rethrowIfPossible<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        code <span class="token operator">+=</span> <span class="token string">&quot;}\n&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token comment">// 其他分支省略。。。</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> code<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>最后生成的代码如下：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> _context<span class="token punctuation">;</span>
+<span class="token keyword">var</span> _x <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_x<span class="token punctuation">;</span>
+<span class="token keyword">var</span> _fn0 <span class="token operator">=</span> _x<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">_fn0</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> _fn1 <span class="token operator">=</span> _x<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">_fn1</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h3> <ul><li>每一次 call 执行的时候都会动态生成最后要执行的代码。</li> <li>新建实例的时候传入的参数有两个作用，一是注释，一是在生成代码 code 的时候会约束形参的规范与个数。</li> <li>调用 tap 注册回调的时候，可以通过 stage 和 before 来控制调用顺序，before 的优先级比 stage 要高。</li> <li>interceptors 拦截器可以注册四种劫持，以了解三种 call, registry, tap
+<ol><li>钩子触发时，将(...args) =&gt; void 添加到拦截器中, 您可以访问 hooks 参数。</li> <li>(tap: Tap) =&gt; Tap | undefined 添加 register 到您的拦截器将触发每个添加的拦截器，必须返回值否则无效。</li> <li>插件插入钩子时将触发(tap: Tap) =&gt; void 添加 tap 到拦截器中。提供的是 Tap 对象。Tap 对象无法更改。</li></ol></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/X-Blog/blogs/浏览器渲染性能优化篇.html" class="prev">
+        浏览器渲染性能优化篇
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/X-Blog/assets/js/app.0bfbaa4e.js" defer></script><script src="/X-Blog/assets/js/2.b59166c8.js" defer></script><script src="/X-Blog/assets/js/6.79cd8fe8.js" defer></script>
+  </body>
+</html>
